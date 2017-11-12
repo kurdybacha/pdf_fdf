@@ -1,0 +1,4 @@
+# Ignore all bazel-* symlinks.
+/lib
+/.idea
+/out
