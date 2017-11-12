@@ -30,6 +30,7 @@ public class Main {
             lineNo++;
             String searchTerm = line[0];
             String comment = line[1];
+            System.out.printf("* Looking for '%s'...", searchTerm);
             List<SubwordsFinder.FoundTerm> foundTerms = new SubwordsFinder(pdf).find(searchTerm);
             for (SubwordsFinder.FoundTerm foundTerm : foundTerms) {
 
@@ -42,6 +43,7 @@ public class Main {
                 });
 
             }
+            System.out.printf("... finished.\n", searchTerm);
         }
 
         csvWriter.close();
@@ -52,9 +54,16 @@ public class Main {
 
     private static void showUsageAndExit()
     {
-        String message = "Usage: java -jar PdfAnnotations.jar <source_pdf> <source_csv> <output_csv>\n"
+        String message = "Program takes words from input csv file, searches them in source pdf file \n"
+                + "and outputs found words with additional data to output csv.\n"
+                + "\nUsage: java -jar PdfAnnotations.jar <source_pdf> <input_csv> <output_csv>\n"
                 + "\nExample:\n"
-                + "  java -jar PdfAnnotations.jar sample.pdf sample.csv output.csv";
+                + "  java -jar PdfAnnotations.jar sample.pdf input.csv output.csv\n"
+                + "\ninput.csv format:\n"
+                + "  <search_term>,<comments>"
+                + "\noutput.csv format:\n"
+                + "  <search_term>,<comments>,<x_coordinate>,<y_coordinate>,<page_number>\n"
+                + "  where <x_coordinate> is end of word coordinate plus 20";
 
         System.err.println(message);
         System.exit(1);
