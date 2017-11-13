@@ -40,7 +40,7 @@ public class Main {
                         String.valueOf(foundTerm.pos.x + foundTerm.width + 20),
                         String.valueOf(foundTerm.pos.y),
                         String.valueOf(foundTerm.page)
-                });
+                }, false);
 
             }
             System.out.printf("... finished.\n", searchTerm);
